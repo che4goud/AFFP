@@ -31,6 +31,7 @@ const ALLOCATION_NOTES = [
   "Prescribed allocation assumes that individuals will set aside around 10%–20% of their savings as liquid cash, depending on regular, committed expenditure on health, education, and other areas.",
   "Investing in multiple asset classes is considered a good investment practice.",
   "If you are not covered for a pension, allocate 10% to 15% to a pension fund.",
+  "These asset allocations are based on general theoretical model predictions. Individuals are advised to consult a SEBI registered investment advisor for a customised investment plan suited to their specific needs.",
 ];
 
 // ── Score meter constants ────────────────────────────────────────────────────
