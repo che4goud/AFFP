@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colour palette */
+  --color-cream: #f0ede4;
+  --color-cream-dark: #e6e2d8;
+  --color-cream-border: #d6d1c4;
+  --color-ink: #1a1815;
+  --color-ink-muted: #4a4540;
+  --color-ink-light: #8a8580;
+  --color-phosphor: #4dff7a;
+  --color-phosphor-mid: #1f9940;
+  --color-phosphor-dim: #0d4020;
+  --color-screen-bg: #070d06;
+  --color-key-bg: #e8e4db;
+  --color-key-border: #c8c3b8;
+  --color-military-olive: #4a5240;
+  --color-military-gold: #c8a84b;
+
+  /* Fonts */
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-space-mono), "Courier New", Courier, monospace;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Dark mode overrides ─── */
+html.dark {
+  --color-cream: #12110e;
+  --color-cream-dark: #1a1815;
+  --color-cream-border: #2d2a25;
+  --color-ink: #e8e4db;
+  --color-ink-muted: #b8b3aa;
+  --color-ink-light: #6a6560;
+  --color-key-bg: #1e1c18;
+  --color-key-border: #2e2c28;
+  --color-military-olive: #5e6a52;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Prevent text size adjustment on mobile orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ─── Cursor blink ─── */
+@keyframes blink {
+  0%,
+  100% { opacity: 1; }
+  50%  { opacity: 0; }
+}
+.cursor-blink {
+  display: inline-block;
+  animation: blink 1.2s step-end infinite;
+}
+
+/* ─── Scanline overlay ─── */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  pointer-events: none;
+}
+
+/* ─── Phosphor glow ─── */
+.phosphor-text {
+  color: var(--color-phosphor);
+  text-shadow:
+    0 0 6px rgba(77, 255, 122, 0.8),
+    0 0 14px rgba(77, 255, 122, 0.4);
+  font-family: var(--font-mono);
+}
+.phosphor-text-dim {
+  color: var(--color-phosphor-mid);
+  text-shadow:
+    0 0 4px rgba(31, 153, 64, 0.6);
+  font-family: var(--font-mono);
+}
+
+/* ─── Screen glow animation ─── */
+@keyframes screen-pulse {
+  0%, 100% { box-shadow: inset 0 0 30px rgba(77, 255, 122, 0.08); }
+  50%       { box-shadow: inset 0 0 50px rgba(77, 255, 122, 0.16); }
+}
+.screen-idle {
+  animation: screen-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Typing animation ─── */
+@keyframes type-in {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ─── Key press ─── */
+@keyframes key-press {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+.key-pressed {
+  animation: key-press 0.12s ease-out;
+}
+
+/* ─── Computer entrance ─── */
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-float-in {
+  animation: float-in 0.8s ease-out forwards;
+}
+
+/* ─── Subtle float ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: float 5s ease-in-out infinite;
 }
