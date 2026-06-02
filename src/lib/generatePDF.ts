@@ -23,6 +23,7 @@ const NOTES = [
   "Prescribed allocation assumes individuals set aside 10–20% of savings as liquid cash depending on committed expenditure.",
   "Investing in multiple asset classes is considered good investment practice.",
   "If you are not covered by a pension, allocate 10% to 15% to a pension fund.",
+  "These asset allocations are based on general theoretical model predictions. Individuals are advised to consult a SEBI registered investment advisor for a customised investment plan suited to their specific needs.",
 ];
 
 export async function generatePDF(result: RiskResult): Promise<void> {
